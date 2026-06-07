@@ -1,0 +1,45 @@
+version: "3.3"
+
+services:
+  database:
+    image: postgres:14-alpine
+    container_name: kupipodariday-db
+    restart: always
+    env_file: .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - backnet
+
+  backend:
+    build:
+      context: ./backend
+    container_name: kupipodariday-backend
+    restart: always
+    env_file: .env
+    ports:
+      - "4000:3000"
+    depends_on:
+      - database
+    networks:
+      - backnet
+      - frontnet
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: kupipodariday-frontend
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    networks:
+      - frontnet
+
+volumes:
+  pgdata:
+
+networks:
+  backnet:
+  frontnet:
