@@ -1,5 +1,4 @@
-// TODO: заменить на зарегистрированный поддомен бэкенда (Группа D, Этап 9)
-export const URL = "https://api.your-domain.zone";
+export const URL = "https://api.simpleescalation.ru";
 
 export const MINIMUM_PASSWORD_LENGTH = 3;
 export const MINIMUM_USERNAME_LENGTH = 3;
